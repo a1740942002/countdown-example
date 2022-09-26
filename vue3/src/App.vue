@@ -37,7 +37,13 @@ input {
   min-width: 150px;
 }
 
+h1 {
+  border-bottom: 1px solid black;
+  padding-bottom: 8px;
+}
+
 .app {
+  text-align: center;
   border: 2px solid red;
   padding: 12px;
 }
