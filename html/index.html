@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="counter">
+      <button></button>
+    </div>
+    <script>
+      const button = document.querySelector('#counter > button')
+
+      let interval
+      let counter = 60
+
+      interval = setInterval(() => {
+        if (counter <= 0) {
+          return clearInterval(interval)
+        }
+        counter -= 1
+        button.innerHTML = counter
+      }, 1000)
+    </script>
+  </body>
+</html>
