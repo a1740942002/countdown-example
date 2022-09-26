@@ -1,5 +1,5 @@
-import { useIntervalFn, Fn } from '@vueuse/core'
-import { ref, onBeforeMount, watchEffect } from 'vue'
+import { useIntervalFn } from '@vueuse/core'
+import { ref, watchEffect } from 'vue'
 
 /**
  * Advanced technique
@@ -18,33 +18,22 @@ import { ref, onBeforeMount, watchEffect } from 'vue'
 interface UseCountOptions {
   initialCount?: number
   interval?: number
-  immediate?: boolean
 }
 
 export function useCountDown(options: UseCountOptions = {}) {
-  const { initialCount = 60, interval = 1000, immediate = true } = options
+  const { initialCount = 60, interval = 1000 } = options
 
-  const counter = ref(0)
+  const counter = ref(initialCount)
   const countDown = () => {
     counter.value -= 1
   }
-  const {
-    pause,
-    resume,
-    isActive: isCounting,
-  } = useIntervalFn(countDown, interval)
-
-  onBeforeMount(() => {
-    if (!immediate) return pause()
-    resume()
-  })
+  const { pause } = useIntervalFn(countDown, interval)
 
   watchEffect(() => {
     if (counter.value <= 0) {
       pause()
-      counter.value = initialCount
     }
   })
 
-  return { counter, pause, resume, isCounting }
+  return { counter, pause }
 }

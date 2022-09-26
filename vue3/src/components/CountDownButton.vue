@@ -15,10 +15,7 @@ const counter = ref(initialCount)
 let timer: number
 
 timer = setInterval(() => {
-  if (counter.value <= 0) {
-    counter.value = initialCount
-    return clearInterval(timer)
-  }
+  if (counter.value <= 0) return clearInterval(timer)
   counter.value -= 1
 }, interval)
 </script>
