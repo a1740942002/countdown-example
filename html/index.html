@@ -5,17 +5,30 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Counter App</title>
+    <style>
+      #counter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      button {
+        font-size: 40px;
+        min-width: 150px;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
     <div id="counter">
-      <button></button>
+      <button>60</button>
     </div>
     <script>
       const button = document.querySelector('#counter > button')
+      const initalCounter = parseInt(button.innerText)
 
       let interval
-      let counter = 60
+      let counter = initalCounter
 
       interval = setInterval(() => {
         if (counter <= 0) {
